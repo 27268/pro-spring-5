@@ -1,7 +1,11 @@
 dependencies {
-	compile project(':chapter02:hello-world')
-	compile spring.context, misc.slf4jJcl, misc.logback
-	testCompile testing.junit
+	implementation(
+			project(':chapter02:hello-world'),
+			spring.context,
+			misc.slf4jJcl,
+			misc.logback
+	)
+	testImplementation rootProject.ext.testing.junit
 }
 
 jar {
@@ -9,6 +13,6 @@ jar {
 		attributes("Created-By"         : "Iuliana Cosmina",
 				"Specification-Title": "Pro Spring 5",
 				"Main-Class"         : "com.apress.prospring5.ch3.annotated.ConstructorConfusion",
-				"Class-Path"         : configurations.compile.collect { it.getName() }.join(' '))
+				"Class-Path"         : configurations.compileClasspath.collect { it.getName() }.join(' '))
 	}
 }
